@@ -21,15 +21,17 @@ async def join(ctx):
 
 @bot.command(name="cantaCostele")
 async def play(ctx):
-    voice_client = ctx.voice_client or discord.utils.get(bot.voice_clients, guild=ctx.guild)
-    
+    # fallback robust, în caz că ctx.voice_client e None
+    voice_client = ctx.guild.voice_client or discord.utils.get(bot.voice_clients, guild=ctx.guild)
+
     if voice_client and voice_client.is_connected():
         radio_url = "https://asculta.radiomanele.ro:8000/"
         voice_client.stop()
         voice_client.play(discord.FFmpegPCMAudio(radio_url), after=lambda e: print('🎵 Redarea s-a încheiat.'))
         await ctx.send("▶️ Redau Radio Manele LIVE! 🔊💥")
     else:
-        await ctx.send("Nu sunt într-un voice channel. Scrie `!haiCostele` mai întâi.")
+        await ctx.send("❌ Costel nu e conectat în voice. Scrie `!haiCostele` mai întâi.")
+
 
 @bot.command(name="taciCostele")
 async def stop(ctx):
