@@ -36,4 +36,5 @@ async def stop(ctx):
     else:
         await ctx.send("Nu sunt conectat.")
 
-bot.run("MTM4ODkxMTkwMjEwODY4NDQzOQ.GBktmt.DLi2Aked_9fQ4H8yCllnrp6D7ZFzVe4AITZfUw")
+import os
+bot.run(os.getenv("TOKEN"))
