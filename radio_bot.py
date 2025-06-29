@@ -31,7 +31,11 @@ async def join(ctx):
 @bot.command(name="cantaCostele")
 async def play(ctx):
     voice_client = ctx.guild.voice_client or discord.utils.get(bot.voice_clients, guild=ctx.guild)
-    
+
+    if not voice_client or not voice_client.is_connected():
+        await ctx.send("❌ Costel nu e conectat în voice. Scrie `!haiCostele` mai întâi.")
+        return
+
     try:
         radio_url = "https://asculta.radiomanele.ro:8000/"
         voice_client.stop()
@@ -39,7 +43,8 @@ async def play(ctx):
         await ctx.send("▶️ Redau Radio Manele LIVE! 🔊💥")
     except Exception as e:
         print(f"Eroare la redare: {e}")
-        await ctx.send("❌ Costel nu poate cânta acum. Încearcă `!haiCostele` din nou.")
+        await ctx.send("❌ Costel nu poate cânta acum. Posibil ca streamul să fie căzut.")
+
 
 
 @bot.command(name="taciCostele")
