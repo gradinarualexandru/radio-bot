@@ -4,10 +4,10 @@ import os
 import random  # adaugă și importul random
 
 RADIO_STREAMS = [
-    ("Radio 1 Manele", "https://live.myradioonline.ro:8443/radio1manele.mp3"),
-    ("FM Radio Manele", "https://live.myradioonline.ro:8443/fmradiomanele.mp3"),
-    ("Radio Manele Vechi", "https://live.myradioonline.ro:8443/manelev.mp3"),
-    ("Radio Pro Manele", "https://live.myradioonline.ro:8443/radiopromanele.mp3")
+    ("Manele FM", "https://stream.zeno.fm/61w5x0mpw98uv"),
+    ("Radio Gangsta Manele", "https://stream.zeno.fm/z1rcv0rhyzzuv"),
+    ("Radio Inferno", "https://stream.zeno.fm/f5y28u5rb98uv"),
+    ("Radio Manele Romania", "https://stream.zeno.fm/n0v9y14fyzzuv")
 ]
 
 
