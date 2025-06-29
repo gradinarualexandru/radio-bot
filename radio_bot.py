@@ -4,11 +4,12 @@ import os
 import random  # adaugă și importul random
 
 RADIO_STREAMS = [
-    "https://live.myradioonline.ro:8443/radio1manele.mp3",
-    "https://live.myradioonline.ro:8443/fmradiomanele.mp3",
-    "https://live.myradioonline.ro:8443/manelev.mp3",
-    "https://live.myradioonline.ro:8443/radiopromanele.mp3"
+    ("Radio 1 Manele", "https://live.myradioonline.ro:8443/radio1manele.mp3"),
+    ("FM Radio Manele", "https://live.myradioonline.ro:8443/fmradiomanele.mp3"),
+    ("Radio Manele Vechi", "https://live.myradioonline.ro:8443/manelev.mp3"),
+    ("Radio Pro Manele", "https://live.myradioonline.ro:8443/radiopromanele.mp3")
 ]
+
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -52,15 +53,15 @@ async def stop(ctx):
 @bot.command(name="skipCostele")
 async def skip(ctx):
     voice_client = ctx.guild.voice_client or discord.utils.get(bot.voice_clients, guild=ctx.guild)
-    
+
     try:
-        radio_url = random.choice(RADIO_STREAMS)
+        radio_name, radio_url = random.choice(RADIO_STREAMS)
         voice_client.stop()
-        voice_client.play(discord.FFmpegPCMAudio(radio_url), after=lambda e: print('🔁 Skip terminat'))
-        await ctx.send(f"🔁 Costel a schimbat melodia! Acum ascultăm: `{radio_url}`")
+        voice_client.play(discord.FFmpegPCMAudio(radio_url), after=lambda e: print(f'🔁 Skip terminat: {radio_name}'))
+        await ctx.send(f"🔁 Costel a schimbat melodia! Acum ascultăm: **{radio_name}** 🎶")
     except Exception as e:
         print(f"Eroare la skip: {e}")
         await ctx.send("❌ Costel nu poate sări acum. Verifică dacă e în voice (`!haiCostele`).")
-        
+
         
 bot.run(os.getenv("TOKEN"))
