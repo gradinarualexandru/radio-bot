@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 import os
-import random  # adaugă și importul random
+import random  
 
 RADIO_STREAMS = [
     ("Radio Cafe", "https://live.radiocafe.ro"),
